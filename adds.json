@@ -1,30 +1,16 @@
 {
   "scheduled_messages": [
     {
-      "add_id": 1234,
+      "add_id": 1112,
       "chatID": "",
       "botToken": "",
-      "time": "02:54",
-      "message": "🎉🎉 SendGrid SMTP Now Available – Get Yours Today! 🚀\n\n💥 SendGrid SMTP 💥\n🚀 Fast \u0026 Reliable for Seamless Email Campaigns!\n\n💼 Features:\n📧 High-Performance SMTP Server for Bulk Email Campaigns\n💯 Optimized for Maximum Inbox Delivery\n\n📩 Perfect for:\n🎯 Targeted Email Campaigns\n📤 Mass Email Sending with High Deliverability\n💻 Automated Transactional Emails and Notifications\n\n💬 Admin Contact Details:\n📲 TELEGRAM: [@Milkshake_80]\n🌐 Visit: https://t.me/bulksmtp\n\n#SendGridSMTP🚀 #EmailCampaigns📧 #HighDeliverability📤"
-    },
-    {
-      "add_id": 1232,
-      "chatID": "@bulksmtp",
-      "botToken": "",
-      "time": "02:55",
-      "message": "🚨 Exclusive SMTP Offer \n\nLooking for valid and bulk SMTPs❓❔\n\nGet 🕹 Mixed valid SMTPs now at an unbeatable price of just 💸 $2 each! 🔥\n\n📌 Offer Highlights:\n\n✅ High-quality mix valid SMTPs\n\n✅ Only 💸 $2 per SMTP\n\n✅ Minimum order: 20 SMTPs\n\nDon’t miss out on this limited-time offer!\n\n🎯 Contact now @Milkshake_80\n\n#SMTP #EmailMarketing #BulkEmail #CheapSMTP #SMTPForSale #EmailCampaign #SMTPOffer #MarketingTools"
-    },
-    {
-      "add_id": 1112,
-      "chatID": "@bulksmtp",
-      "botToken": "7256894652:AAEDWmHITv14QB_peuYRyPpqPOEOWbD85iM",
-      "time": "03:01",
+      "time": "",
       "message": "Test"
     },
     {
       "add_id": 1113,
-      "chatID": "@bulksmtp",
-      "botToken": "7256894652:AAEDWmHITv14QB_peuYRyPpqPOEOWbD85iM",
+      "chatID": "",
+      "botToken": "",
       "time": "3:06",
       "message": "Test 2"
     }
