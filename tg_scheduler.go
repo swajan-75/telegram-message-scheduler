@@ -25,7 +25,6 @@ type Adds struct {
 }
 
 const (
-	// Default values
 	defaultChatID   = ""
 	defaultBotToken = ""
 	adminUserID     = 
@@ -93,7 +92,7 @@ func loadJSONFile(filename string) (Adds, error) {
 }
 
 func saveJSONFile(filename string, adds Adds) error {
-	// Convert the data back to JSON
+
 	fileContent, err := json.MarshalIndent(adds, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to serialize JSON: %w", err)
