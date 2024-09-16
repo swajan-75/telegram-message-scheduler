@@ -1,18 +1,11 @@
 {
   "scheduled_messages": [
     {
-      "add_id": 1112,
-      "chatID": "",
-      "botToken": "",
-      "time": "",
-      "message": "Test"
-    },
-    {
-      "add_id": 1113,
-      "chatID": "",
-      "botToken": "",
-      "time": "3:06",
-      "message": "Test 2"
+      "add_id": 1234,
+      "chatID": "@yourchannel",
+      "botToken": "your-bot-token",
+      "time": "14:00",
+      "message": "This is a scheduled message."
     }
   ]
 }
