@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -25,6 +26,7 @@ type Adds struct {
 }
 
 const (
+	// Default values
 	defaultChatID   = ""
 	defaultBotToken = ""
 	adminUserID     = 
@@ -92,7 +94,7 @@ func loadJSONFile(filename string) (Adds, error) {
 }
 
 func saveJSONFile(filename string, adds Adds) error {
-
+	// Convert the data back to JSON
 	fileContent, err := json.MarshalIndent(adds, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to serialize JSON: %w", err)
@@ -192,17 +194,41 @@ func validateTimeFormat(timeStr string) bool {
 }
 
 func handleAdminCommand(chatID int, message string) {
+	message = strings.ToLower(message)
 	switch userState[chatID] {
 	case "":
-		if message == "set_add" {
+		if message == "help" {
+			// Help message with all available commands
+			helpMessage := "Available commands:\n\n" +
+				"1. set_add - Schedule a new message.\n" +
+				"2. show_all - Show all scheduled messages.\n" +
+				"3. del_<ID> - Delete a message by its ID (e.g., del_1234).\n" +
+				"4. time? - Show the current server time.\n" +
+				"5. help - Display this help message."
+
+			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), helpMessage)
+		} else if message == "set_add" {
 			userState[chatID] = "waiting_for_time"
 			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), "Please enter the time for the new message (e.g., 14:00):")
 		} else if message == "show_all" {
 			showAllMessages(chatID)
+		} else if message == "time?" { // New command to check the current time
+			currentTime := time.Now().Format("15:04:05") // Get current time in HH:mm:ss format
+			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), fmt.Sprintf("Current time is: %s", currentTime))
 		} else if len(message) > 4 && message[:4] == "del_" {
 			deleteID := 0
 			fmt.Sscanf(message, "del_%d", &deleteID)
 			deleteScheduledMessage(chatID, deleteID)
+		} else {
+			// Help message with all available commands
+			helpMessage := "Available commands:\n\n" +
+				"1. set_add - Schedule a new message.\n" +
+				"2. show_all - Show all scheduled messages.\n" +
+				"3. del_<ID> - Delete a message by its ID (e.g., del_1234).\n" +
+				"4. time? - Show the current server time.\n" +
+				"5. help - Display this help message."
+
+			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), helpMessage)
 		}
 	case "waiting_for_time":
 		if !validateTimeFormat(message) {
@@ -238,13 +264,13 @@ func handleAdminCommand(chatID int, message string) {
 			return
 		}
 
-	
+		// Schedule the new message immediately
 		scheduleTelegramMessage(defaultBotToken, defaultChatID, timeStr, newMessage)
 
-		
+		// Confirm addition
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), fmt.Sprintf("New message scheduled successfully with ID: %d!", newScheduledMessage.AddID))
 
-	
+		// Reset the state for the user
 		userState[chatID] = ""
 		tempData[chatID] = ""
 	}
@@ -270,7 +296,7 @@ func showAllMessages(chatID int) {
 }
 
 func deleteScheduledMessage(chatID int, addID int) {
-	
+	// Load existing messages from adds.json
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), "Error loading adds.json file!")
@@ -292,7 +318,7 @@ func deleteScheduledMessage(chatID int, addID int) {
 }
 
 func main() {
-	
+	// Load the adds.json file
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		log.Fatalf("Error loading JSON file: %v", err)
