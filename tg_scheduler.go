@@ -212,8 +212,8 @@ func handleAdminCommand(chatID int, message string) {
 			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), "Please enter the time for the new message (e.g., 14:00):")
 		} else if message == "show_all" {
 			showAllMessages(chatID)
-		} else if message == "time?" { // New command to check the current time
-			currentTime := time.Now().Format("15:04:05") // Get current time in HH:mm:ss format
+		} else if message == "time?" { 
+			currentTime := time.Now().Format("15:04:05") 
 			sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), fmt.Sprintf("Current time is: %s", currentTime))
 		} else if len(message) > 4 && message[:4] == "del_" {
 			deleteID := 0
