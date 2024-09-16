@@ -26,9 +26,9 @@ type Adds struct {
 
 const (
 	// Default values
-	defaultChatID   = "@bulksmtp"
-	defaultBotToken = "7256894652:AAEDWmHITv14QB_peuYRyPpqPOEOWbD85iM"
-	adminUserID     = 1274939394
+	defaultChatID   = ""
+	defaultBotToken = ""
+	adminUserID     = 
 )
 
 var (
