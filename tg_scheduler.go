@@ -239,13 +239,13 @@ func handleAdminCommand(chatID int, message string) {
 			return
 		}
 
-		// Schedule the new message immediately
+	
 		scheduleTelegramMessage(defaultBotToken, defaultChatID, timeStr, newMessage)
 
-		// Confirm addition
+		
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), fmt.Sprintf("New message scheduled successfully with ID: %d!", newScheduledMessage.AddID))
 
-		// Reset the state for the user
+	
 		userState[chatID] = ""
 		tempData[chatID] = ""
 	}
@@ -271,7 +271,7 @@ func showAllMessages(chatID int) {
 }
 
 func deleteScheduledMessage(chatID int, addID int) {
-	// Load existing messages from adds.json
+	
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), "Error loading adds.json file!")
@@ -293,7 +293,7 @@ func deleteScheduledMessage(chatID int, addID int) {
 }
 
 func main() {
-	// Load the adds.json file
+	
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		log.Fatalf("Error loading JSON file: %v", err)
