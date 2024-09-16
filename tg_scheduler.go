@@ -26,7 +26,7 @@ type Adds struct {
 }
 
 const (
-	// Default values
+	
 	defaultChatID   = ""
 	defaultBotToken = ""
 	adminUserID     = 
@@ -94,7 +94,7 @@ func loadJSONFile(filename string) (Adds, error) {
 }
 
 func saveJSONFile(filename string, adds Adds) error {
-	// Convert the data back to JSON
+	
 	fileContent, err := json.MarshalIndent(adds, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to serialize JSON: %w", err)
@@ -198,7 +198,7 @@ func handleAdminCommand(chatID int, message string) {
 	switch userState[chatID] {
 	case "":
 		if message == "help" {
-			// Help message with all available commands
+			
 			helpMessage := "Available commands:\n\n" +
 				"1. set_add - Schedule a new message.\n" +
 				"2. show_all - Show all scheduled messages.\n" +
@@ -220,7 +220,7 @@ func handleAdminCommand(chatID int, message string) {
 			fmt.Sscanf(message, "del_%d", &deleteID)
 			deleteScheduledMessage(chatID, deleteID)
 		} else {
-			// Help message with all available commands
+			
 			helpMessage := "Available commands:\n\n" +
 				"1. set_add - Schedule a new message.\n" +
 				"2. show_all - Show all scheduled messages.\n" +
@@ -264,13 +264,12 @@ func handleAdminCommand(chatID int, message string) {
 			return
 		}
 
-		// Schedule the new message immediately
 		scheduleTelegramMessage(defaultBotToken, defaultChatID, timeStr, newMessage)
 
-		// Confirm addition
+	
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), fmt.Sprintf("New message scheduled successfully with ID: %d!", newScheduledMessage.AddID))
 
-		// Reset the state for the user
+		
 		userState[chatID] = ""
 		tempData[chatID] = ""
 	}
@@ -296,7 +295,7 @@ func showAllMessages(chatID int) {
 }
 
 func deleteScheduledMessage(chatID int, addID int) {
-	// Load existing messages from adds.json
+	
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		sendTelegramMessage(defaultBotToken, fmt.Sprintf("%d", chatID), "Error loading adds.json file!")
@@ -318,7 +317,7 @@ func deleteScheduledMessage(chatID int, addID int) {
 }
 
 func main() {
-	// Load the adds.json file
+
 	adds, err := loadJSONFile("adds.json")
 	if err != nil {
 		log.Fatalf("Error loading JSON file: %v", err)
